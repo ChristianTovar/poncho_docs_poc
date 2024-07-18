@@ -8,7 +8,7 @@ defmodule Mix.Tasks.PonchoDocs do
 
   @impl Mix.Task
   def run(_args) do
-    Mix.Shell.IO.info("Generating new poncho docs!")
+    Mix.Shell.IO.info("Generating new poncho docs...")
 
     # Iterate paths and copy files inside those paths
     Enum.each(@paths, &Mix.Shell.cmd("cp #{&1} ./lib/temp/", fn _x -> nil end))
@@ -18,5 +18,7 @@ defmodule Mix.Tasks.PonchoDocs do
 
     # Purge copied files
     Mix.Shell.cmd("rm ./lib/temp/*", fn _x -> nil end)
+
+    Mix.Shell.IO.info("Finished!")
   end
 end
