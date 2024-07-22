@@ -97,8 +97,8 @@ defmodule Ui.MixProject do
         UiWeb.Router,
         UiWeb.Telemetry
       ],
-      One: [One],
-      Two: [Two]
+      One: [One, One.Application],
+      Two: [Two, Two.Application]
     ]
   end
 end

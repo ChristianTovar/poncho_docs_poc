@@ -1,9 +1,9 @@
 defmodule Mix.Tasks.PonchoDocs do
   use Mix.Task
 
-  @paths [
-    "../one/lib/*",
-    "../two/lib/*"
+  @apps [
+    "one",
+    "two"
   ]
 
   @impl Mix.Task
@@ -13,8 +13,11 @@ defmodule Mix.Tasks.PonchoDocs do
     # Create a temporary directory
     Mix.Shell.cmd("mkdir lib/temp", fn _x -> nil end)
 
+    # Create app directories
+    Enum.each(@apps, &Mix.Shell.cmd("mkdir lib/temp/#{&1}", fn _x -> nil end))
+
     # Iterate paths and copy files inside those paths
-    Enum.each(@paths, &Mix.Shell.cmd("cp #{&1} ./lib/temp/", fn _x -> nil end))
+    Enum.each(@apps, &Mix.Shell.cmd("cp ../#{&1}/lib/* ./lib/temp/#{&1}/", fn _x -> nil end))
 
     # Generate new docs
     Mix.Shell.cmd("mix docs", fn _x -> nil end)
