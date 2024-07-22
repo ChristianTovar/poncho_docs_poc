@@ -9,7 +9,8 @@ defmodule Ui.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -72,6 +73,32 @@ defmodule Ui.MixProject do
         "esbuild ui --minify",
         "phx.digest"
       ]
+    ]
+  end
+
+  defp docs do
+    [
+      groups_for_modules: groups_for_modules()
+    ]
+  end
+
+  defp groups_for_modules do
+    [
+      Ui: [Mix.Tasks.PonchoDocs, Something, Something.Inside, Ui, Ui.Application],
+      UiWeb: [
+        UiWeb,
+        UiWeb.CoreComponents,
+        UiWeb.Endpoint,
+        UiWeb.ErrorHTML,
+        UiWeb.ErrorJSON,
+        UiWeb.Layouts,
+        UiWeb.PageController,
+        UiWeb.PageHTML,
+        UiWeb.Router,
+        UiWeb.Telemetry
+      ],
+      One: [One],
+      Two: [Two]
     ]
   end
 end

@@ -1,4 +1,4 @@
-defmodule OneHalf do
+defmodule One.Half do
   @moduledoc """
   Documentation for `One Half`.
   """
