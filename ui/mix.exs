@@ -78,7 +78,8 @@ defmodule Ui.MixProject do
 
   defp docs do
     [
-      groups_for_modules: groups_for_modules()
+      groups_for_modules: groups_for_modules(),
+      source_url_pattern: source_url_pattern()
     ]
   end
 
@@ -100,5 +101,18 @@ defmodule Ui.MixProject do
       One: [One, One.Application],
       Two: [Two, Two.Application]
     ]
+  end
+
+  def source_url, do: "https://github.com/ChristianTovar/poncho_docs_poc/tree/main"
+
+  def source_url_pattern do
+    fn path, line ->
+      if String.contains?(path, "lib/temp/") do
+        [[_, lib, path]] = Regex.scan(~r"lib/temp/([^/]*)/(.*)", path)
+        "#{source_url()}/#{lib}/lib/#{path}#L#{line}"
+      else
+        "#{source_url()}/ui/#{path}#L#{line}"
+      end
+    end
   end
 end
