@@ -25,6 +25,12 @@ defmodule UiWeb.Endpoint do
     gzip: false,
     only: UiWeb.static_paths()
 
+  plug Plug.Static,
+    at: "/docs",
+    from: "/priv/static/doc",
+    gzip: false,
+    only: "doc"
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

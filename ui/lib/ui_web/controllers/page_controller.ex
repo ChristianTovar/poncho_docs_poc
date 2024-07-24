@@ -6,4 +6,8 @@ defmodule UiWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  def docs(conn, _params) do
+    redirect(conn, to: "/doc/index.html")
+  end
 end

@@ -20,7 +20,7 @@ defmodule Mix.Tasks.PonchoDocs do
     Enum.each(@apps, &Mix.Shell.cmd("cp ../#{&1}/lib/* ./lib/temp/#{&1}/", fn _x -> nil end))
 
     # Generate new docs
-    Mix.Shell.cmd("mix docs", fn _x -> nil end)
+    Mix.Shell.cmd("mix docs -o priv/static/doc", fn _x -> nil end)
 
     # Delete copied files
     Mix.Shell.cmd("rm -rf lib/temp", fn _x -> nil end)
